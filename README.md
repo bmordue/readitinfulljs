@@ -9,4 +9,6 @@ Getting started
 Install mongoDB
 Install node.js and npm
 
-npm install express
+npm install
+
+node app.js
