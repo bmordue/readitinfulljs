@@ -1,7 +1,8 @@
 /*jslint node: true */
+"use strict"; // strict Javascript
 
 // client API keys and secrets
-var config = require('./oauth.js')
+var config = require('./oauth.js');
 
 /**
  * Module dependencies.
@@ -13,7 +14,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
-var passport = require('passport')
+var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 
 // serialize and deserialize
@@ -37,9 +38,8 @@ passport.use(new TwitterStrategy({
 
         //  User.findOrCreate({ twitterId: profile.id }, function (err, user) {
         //    return done(err, user);
-        // });
-    }
-));
+        // });    }
+    }));
 
 
 var app = express();
@@ -71,7 +71,7 @@ app.configure(function () {
 
 app.configure('development', function () {
     // development only
-    app.use(express.errorHandler())
+    app.use(express.errorHandler());
 });
 
 
@@ -80,6 +80,16 @@ http.createServer(app).listen(app.get('port'), function () {
 });
 
 
+
+// util
+
+// test authentication
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+}
 
 // routes
 
@@ -100,9 +110,6 @@ app.get('/', function (req, res) {
 
 app.get('/auth/twitter',
     passport.authenticate('twitter'), function (req, res) {});
-//passport.authenticate('twitter'),
-//function(req, res){
-//});
 
 app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
@@ -116,14 +123,3 @@ app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
-
-// port
-//app.listen(1337);
-
-// test authentication
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/')
-}
