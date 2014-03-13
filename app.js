@@ -1,3 +1,5 @@
+/*jslint node: true */
+
 // client API keys and secrets
 var config = require('./oauth.js')
 

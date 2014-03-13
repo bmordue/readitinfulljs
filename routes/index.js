@@ -1,3 +1,4 @@
+/*jslint node: true */
 
 /*
  * GET home page.
