@@ -15,28 +15,28 @@ var passport = require('passport')
 var TwitterStrategy = require('passport-twitter').Strategy;
 
 // serialize and deserialize
-passport.serializeUser(function(user, done) {
-done(null, user);
+passport.serializeUser(function (user, done) {
+    done(null, user);
 });
-passport.deserializeUser(function(obj, done) {
-done(null, obj);
+passport.deserializeUser(function (obj, done) {
+    done(null, obj);
 });
 
 // config
 passport.use(new TwitterStrategy({
- consumerKey: config.twitter.consumerKey,
- consumerSecret: config.twitter.consumerSecret,
- callbackURL: config.twitter.callbackURL
-},
- function(token, tokenSecret, profile, done) {
-     process.nextTick(function() {
-   return done(null, profile);
- });
+        consumerKey: config.twitter.consumerKey,
+        consumerSecret: config.twitter.consumerSecret,
+        callbackURL: config.twitter.callbackURL
+    },
+    function (token, tokenSecret, profile, done) {
+        process.nextTick(function () {
+            return done(null, profile);
+        });
 
-//  User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-//    return done(err, user);
-// });
-}
+        //  User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+        //    return done(err, user);
+        // });
+    }
 ));
 
 
@@ -63,18 +63,18 @@ app.configure(function () {
 
     app.use(passport.initialize());
     app.use(passport.session());
-    
+
     app.use(app.router);
 });
 
-app.configure('development',function(){
-// development only
-  app.use(express.errorHandler())
+app.configure('development', function () {
+    // development only
+    app.use(express.errorHandler())
 });
 
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
 });
 
 
@@ -84,29 +84,35 @@ http.createServer(app).listen(app.get('port'), function(){
 //app.get('/ping', routes.ping);
 app.get('/users', user.list);
 
-app.get('/account', ensureAuthenticated, function(req, res){
-res.render('account', { user: req.user });
+app.get('/account', ensureAuthenticated, function (req, res) {
+    res.render('account', {
+        user: req.user
+    });
 });
 
-app.get('/', function(req, res){
-res.render('login', { user: req.user });
+app.get('/', function (req, res) {
+    res.render('login', {
+        user: req.user
+    });
 });
 
 app.get('/auth/twitter',
-  passport.authenticate('twitter'), function(req, res){});
+    passport.authenticate('twitter'), function (req, res) {});
 //passport.authenticate('twitter'),
 //function(req, res){
 //});
 
 app.get('/auth/twitter/callback',
-passport.authenticate('twitter', { failureRedirect: '/login' }),
-function(req, res) {
- res.redirect('/account');
-});
+    passport.authenticate('twitter', {
+        failureRedirect: '/login'
+    }),
+    function (req, res) {
+        res.redirect('/account');
+    });
 
-app.get('/logout', function(req, res){
-req.logout();
-res.redirect('/');
+app.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
 });
 
 // port
@@ -114,8 +120,8 @@ res.redirect('/');
 
 // test authentication
 function ensureAuthenticated(req, res, next) {
-if (req.isAuthenticated()) { return next(); }
-res.redirect('/')
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/')
 }
-
-
