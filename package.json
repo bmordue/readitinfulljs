@@ -1,16 +1,20 @@
 {
-    "name": "readitinfull",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "node app.js"
-    },
-    "dependencies": {
-        "express": "4.17.1",
-        "jade": "*",
-        "mongoose": "*",
-        "passport": "*",
-        "passport-twitter": "*",
-        "twit": "*"
-    }
+  "name": "readitinfull",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "jade": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-twitter": "*",
+    "twit": "*",
+    "@snyk/protect": "latest"
+  },
+  "snyk": true
 }
