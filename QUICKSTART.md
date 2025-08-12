@@ -11,6 +11,14 @@ Before using any of the quick start methods, you'll need:
    - Consumer Secret
    - Callback URL (default: `http://localhost:1337/auth/twitter/callback`)
 
+## What's Included
+
+This quick start package includes:
+
+- **Express 4.x Compatibility Fix**: The original app.js has been updated to work with Express 4.17.1 (removed deprecated `app.configure()` and updated middleware)
+- **OAuth Configuration**: Automatic creation of oauth.js template with environment variable support
+- **Multiple Deployment Options**: Docker, Vagrant, and Chef provisioning
+
 ## Quick Start Options
 
 ### Option 1: Docker Compose (Recommended)
