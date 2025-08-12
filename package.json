@@ -6,9 +6,15 @@
         "start": "node app.js"
     },
     "dependencies": {
+        "body-parser": "^2.2.0",
+        "cookie-parser": "^1.4.7",
+        "errorhandler": "^1.5.1",
         "express": "4.17.1",
+        "express-session": "^1.18.2",
         "jade": "*",
+        "method-override": "^3.0.0",
         "mongoose": "*",
+        "morgan": "^1.10.1",
         "passport": "*",
         "passport-twitter": "*",
         "twit": "*"
