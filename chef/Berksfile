@@ -1,0 +1,7 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+# Dependencies for Node.js and MongoDB
+cookbook 'nodejs', '~> 7.0'
+cookbook 'mongodb', '~> 1.0'

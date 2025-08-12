@@ -1,0 +1,23 @@
+[Unit]
+Description=ReadItInFull.js Node.js Application
+After=network.target mongodb.service
+Wants=mongodb.service
+
+[Service]
+Type=simple
+User=<%= @user %>
+Group=<%= @group %>
+WorkingDirectory=<%= @app_dir %>
+ExecStart=/usr/bin/node app.js
+Restart=always
+RestartSec=3
+Environment=NODE_ENV=production
+Environment=PORT=<%= @port %>
+
+# Logging
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=readitinfulljs
+
+[Install]
+WantedBy=multi-user.target

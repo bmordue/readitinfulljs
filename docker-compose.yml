@@ -1,0 +1,29 @@
+services:
+  mongodb:
+    image: mongo:4.4
+    container_name: readitinfulljs-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: readitinfulljs
+
+  app:
+    build: .
+    container_name: readitinfulljs-app
+    restart: unless-stopped
+    ports:
+      - "1337:1337"
+    depends_on:
+      - mongodb
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/readitinfulljs
+      - TWITTER_CONSUMER_KEY=${TWITTER_CONSUMER_KEY:-your_consumer_key}
+      - TWITTER_CONSUMER_SECRET=${TWITTER_CONSUMER_SECRET:-your_consumer_secret}
+      - TWITTER_CALLBACK_URL=${TWITTER_CALLBACK_URL:-http://localhost:1337/auth/twitter/callback}
+
+volumes:
+  mongodb_data:
