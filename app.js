@@ -13,7 +13,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose'); // MongoDB/Mongoose not actually used in this application
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 
