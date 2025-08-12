@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+QUICKSTART.md
+Vagrantfile
+.vagrant
+chef/
+*.log
+*.tmp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

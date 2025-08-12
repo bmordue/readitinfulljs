@@ -16,3 +16,13 @@ node_modules
 
 data
 oauth.js
+
+# Vagrant
+.vagrant/
+*.box
+
+# Chef
+chef/.chef/
+chef/cookbooks/**/metadata.json
+chef/Berksfile.lock
+chef/.berkshelf/
