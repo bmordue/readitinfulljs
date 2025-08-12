@@ -6,11 +6,10 @@
         "start": "node app.js"
     },
     "dependencies": {
-        "express": "4.17.1",
-        "jade": "*",
-        "mongoose": "*",
-        "passport": "*",
-        "passport-twitter": "*",
-        "twit": "*"
+        "express": "5.1.0",
+        "pug": "3.0.3",
+        "passport": "0.7.0",
+        "passport-twitter": "1.0.4",
+        "twit": "2.2.11"
     }
 }

@@ -47,7 +47,7 @@ var app = express();
 // all environments
 app.set('port', process.env.PORT || 1337);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 // Express 4.x compatible middleware
 app.use(express.static(path.join(__dirname, 'public')));
